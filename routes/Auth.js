@@ -18,8 +18,8 @@ passport.deserializeUser((user, done) => {
 passport.use(
     new GithubStrategy(
         {
-            clientID:process.env.GITHUB_ID,
-            clientSecret:process.env.GITHUB_ID_SECRET,
+            clientID: process.env.GITHUB_ID,
+            clientSecret: process.env.GITHUB_ID_SECRET,
             callbackURL: "https://p2-30874540.onrender.com/github/callback",
             passReqToCallback: true
         },
@@ -35,7 +35,10 @@ exports.githubLogin = passport.authenticate('github');
 
 exports.githubAuth = passport.authenticate('github', { failureRedirect: '/login' }),
     (req, res) => {
-        res.send({ request: 'Contactos promed..' })
+        const id = process.env.SECRET;
+        const token = jwt.sign({ id: id }, process.env.JWTSECRET, { expiresIn: '1h' });
+        res.cookie("jwt", token);
+        res.redirect("/contactos");
     }
 
 exports.protectRoute = async (req, res, next) => {
