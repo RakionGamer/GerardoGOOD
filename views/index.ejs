@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>P2_30874540/</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NY9J9Q9HV9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-NY9J9Q9HV9');
+  </script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+  <meta property="og:title" content="Curriculumm" />
+  <meta property="og:type" content="application" />
+  <meta property="og:url" content="" />
+  <meta property="og:image" content="" />
+
+
+</head>
+
+<body>
+  <div class="contenedor">
+    <div class="header">
+      <div class="img-area">
+        <img src="/images/foto.png " alt="" />
+      </div>
+      <h2>Gerardo A. Rojas V.</h2>
+    </div>
+    <div class="main">
+      <div class="contentBox">
+        <div class="leftSide">
+          <h2>Datos Personales</h2>
+          <ul>
+            <li><strong>fecha de Nacimiento:</strong>12 de septiembre del 2004</li>
+            <li><strong>Lugar de Nacimiento:</strong>Centro Médico Cagua</li>
+            <li><strong>Teléfono:</strong>+58 412-1579252</li>
+            <li><strong>Cédula:</strong>30.874.540</li>
+            <li><strong>Correo eléctronico:</strong>gerarvarojas@gmail.com</li>
+          </ul>
+          <h2>Formación Académica</h2>
+          <ul class="education">
+            <li><strong>2010-2016:</strong>U.E.P Colegio "Padre Jiménez"</li>
+            <li><strong>2016-2021:</stron>U.E.P Colegio "Padre Jiménez"</li>
+            <li><strong>2022-Actualmente</strong> U.N.E "Romulo Gallegos"</li>
+          </ul>
+          <h2>Experiencia laboral</h2>
+          <ul>
+            <li><strong>2019-2022</strong>Accesorios Lara C.A</li>
+            <li><strong>2020-2022:</strong>Barbería NOA</li>
+            <li><strong>2023-Actualmente:</strong>The CombiShop</li>
+          </ul>
+
+          <h2>Habilidades</h2>
+          <ul>
+            <li>Facilidad al momento de hacer algorítmos</li>
+            <li>Saber manejar la APP de Photoshop</li>
+            <li>Saber tomar las decisiones correctas al momento de empreder un negocio</li>
+            <li>Facilidad para aprender nuevos idiomas</li>
+        </div>
+        <h3 style="margin-top: 25px;">Formulario de contacto</h3>
+
+        <div class="form" style="width: 369px;">
+          <form action="/send" method="post">
+            <label for="">Correo</label><br>
+            <input type="text" name="correo"><br>
+            <label for="">Nombre</label><br>
+            <input type="text" name="nombre"><br>
+            <label for="">Comentario</label><br>
+            <textarea name="comentario" id=""></textarea><br>
+            <div class="g-recaptcha" data-sitekey="<%= KEYPUBLIC %>"></div>
+            <br />
+            <button>Enviar</button>
+          </form>
+        </div>
+      </div>
+</body>
+
+</html>
