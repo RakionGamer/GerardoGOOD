@@ -1,45 +1,29 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const { promisify } = require('util');
-const GithubStrategy = require('passport-github').Strategy;
-const passport = require("passport");
-
+const passport = require('passport');
+const GitHubStrategy = require('passport-github').Strategy;
 // Middleware para proteger rutas
 
+exports.Passport = () => {
+    passport.serializeUser((user, done) => {
+        done(null, user.id);
+    });
+    passport.deserializeUser((user, done) => {
+        done(null, user);
+    });
 
-
-passport.serializeUser((user, done) => {
-    done(null, user.id);
-});
-passport.deserializeUser((user, done) => {
-    done(null, user);
-});
-
-passport.use(
-    new GithubStrategy(
-        {
-            clientID: process.env.GITHUB_ID,
-            clientSecret: process.env.GITHUB_ID_SECRET,
-            callbackURL: "https://p2-30874540.onrender.com/github/callback",
-            passReqToCallback: true
-        },
-        function (request, accessToken, refreshToken, profile, cb) {
-            cb(null, profile)
+    passport.use(new GitHubStrategy({
+        clientID: process.env.GITHUB_ID,
+        clientSecret: process.env.GITHUB_ID_SECRET,
+        callbackURL: "https://p2-30874540.onrender.com/github/callback",
+      },
+        function (accessToken, refreshToken, profile, cb) {
+          return cb(null, profile);
         }
-    )
-);
+      ));
+}
 
-
-
-exports.githubLogin = passport.authenticate('github');
-
-exports.githubAuth = passport.authenticate('github', { failureRedirect: '/login' }),
-    (req, res) => {
-        const id = process.env.SECRET;
-        const token = jwt.sign({ id: id }, process.env.JWTSECRET, { expiresIn: '1h' });
-        res.cookie("jwt", token);
-        res.redirect("/contactos");
-    }
 
 exports.protectRoute = async (req, res, next) => {
     const token = req.cookies.jwt;
